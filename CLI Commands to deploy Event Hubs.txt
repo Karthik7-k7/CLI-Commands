@@ -1,0 +1,13 @@
+Azure CLI commands gto deploy Event Hubs:
+
+#Create Event Hub Namespace
+
+>az eventhubs namespace create --resource-group CLI --name CLIHUB --location centralindia --sku Standard --enable-auto-inflate true --maximum-throughput-units 2 
+
+#Create a network rule for eventhubnamesapce to access only by particular Vnet:
+
+>az eventhubs namespace network-rule add --resource-group CLI --namespace-name CLIHUB --subnet CLI-Snet --vnet-name CLI-Vnet --ignore-missing-endpoint true
+
+#Create a Event Hub Topics to add in event hub namespace:
+
+>az eventhubs eventhub create --name clievent --resource-group CLI --namespace-name CLIHUB

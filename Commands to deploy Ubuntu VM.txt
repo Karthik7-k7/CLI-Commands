@@ -1,0 +1,42 @@
+Azure CLI commands to deploy Linux (Ubuntu VM).
+
+#Create Resourcegroup
+
+>az group create --name $Rgname --location $locationname
+
+#Create Vnet/Subnet
+
+>az network vnet create --resource-group $Rgname --name $Vnetname --subnet-name $Subnetname
+
+#Create Public Ip
+
+>az network public-ip create --resource-group $Rgname --name $Publicipname
+
+#Create Network security group
+
+>az network nsg create --resource-group $Rgname --name $Nsgname
+
+#Create Network Interface Card
+
+>az network nic create --resource-group $Rgname --name $Nicname --vnet-name $Vnetname --subnet $Subnetname --network-security-group $Nsgname --public-ip-addres $Publicipname
+
+#Create VM
+
+>az vm create --resource-group $Rgname --name $VMname --location $locationname --nics $Nicname --image $image --size $size --admin-username $username --admin-password $Password
+
+
+
+-->Script:
+
+>az group create --name $Rgname --location $locationname
+>az network vnet create --resource-group $Rgname --name $Vnetname --subnet-name $Subnetname
+>az network public-ip create --resource-group $Rgname --name $Publicipname
+>az network nsg create --resource-group $Rgname --name $Nsgname
+>az network nic create --resource-group $Rgname --name $Nicname --vnet-name $Vnetname --subnet $Subnetname --network-security-group $Nsgname --public-ip-addres $Publicipname
+>az vm create --resource-group $Rgname --name $VMname --location $locationname --nics $Nicname --image $image --size $size --admin-username $username --admin-password $Password
+
+
+-->Note:
+
+--Replace $values with respective resource names.
+--Select the latest image accordingly with case sensitive as a prior point.

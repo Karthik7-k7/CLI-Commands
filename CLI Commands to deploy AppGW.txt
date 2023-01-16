@@ -1,0 +1,15 @@
+Azure CLI Commands to deploy Application gateway(WAF,prevention mode):
+
+ >az network vnet create --resource-group CLI --name appvnet --location centralindia --address-prefix 10.0.0.0/16 --subnet-name appsub --subnet-prefix 10.0.1.0/24 
+ 
+ >az network vnet subnet create --resource-group CLI --name appsnet --vnet-name appvnet --address-prefix 10.0.2.0/24
+ 
+ >az network public-ip create --resource-group CLI --name app-pip 
+ 
+ >az nnetwork application-gateway create --resource-group CLI --name CLIAPPGW --location centralindia --vnet-name appvnet --subnet appsub --capacity 2 --sku WAF_V2 --http-settings-cookie-based-affinity Disabled --frontend-port 443 --http-settings-port 443 --http-settings-protocol Https --public-ip-address app-pip
+ 
+ >az network application-gateway waf-config set --enabled true --gateway-name CLIAPPGW --resource-group CLI --firewall-mode Prevention --rule-set-version 3.0
+ 
+ >az network application-gateway address-pool create --resource-group CLI --gateway-name CLIAPPGW --name Bpool --servers 10.0.0.4 
+ 
+ 
