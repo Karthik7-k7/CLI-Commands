@@ -1,0 +1,12 @@
+-az login
+
+-az group create --name <resource-group-name> --location <location>
+Note: Replace <location> with your preferred Azure region where you want to create the resource group.
+
+-az aks create --resource-group <resource-group-name> --name <cluster-name> --node-count <node-count> --enable-addons monitoring --generate-ssh-keys
+Note: Replace <node-count> with the number of nodes you want to create in the cluster.
+
+-az aks show --resource-group <resource-group-name> --name <cluster-name> --query 'provisioningState'
+
+-az aks get-credentials --resource-group <resource-group-name> --name <cluster-name>
+kubectl get nodes
